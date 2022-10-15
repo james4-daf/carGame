@@ -9,6 +9,12 @@ let ctx = canvas.getContext("2d");
 let startRaceBtn = document.querySelector("#startRace");
 let restartRaceBtn = document.querySelector("#restartRace");
 
+let oppositionCar = new Image();
+oppositionCar.src = "./images/car.png";
+// let oppCarX = 100;
+// let oppCarY = 5;
+let oppCars = [{ x: 100, y: 0 }];
+
 let intervalID = null;
 let raceIsOver = false;
 
@@ -19,22 +25,45 @@ let carWidth = 50;
 let isCarRight = false;
 let isCarLeft = false;
 
+let carPosition = 8;
+
 function drawCar() {
   ctx.beginPath();
   ctx.fillStyle = "#34eb3d";
   ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
+
   ctx.closePath();
+
+  for (i = 0; i < oppCars.length; i++) {
+    ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
+    //oppCars[i].y = oppCars[i].y + 5;
+    if (oppCars[i].y > canvas.height) {
+      oppCars[i] = {
+        x: Math.floor(Math.random() * canvas.width),
+        y: 0,
+      };
+    }
+  }
+  //oppCarY = oppCarY + 5;
 }
 
 function gameAnimation() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawCar();
 
+  ctx.fillStyle = "red";
+  ctx.font = "28px Roboto";
+  ctx.fillText(`Position: ${carPosition}`, 360, 40);
+
   if (isCarRight) {
-    carX = carX + 5;
+    if (carX + carWidth < canvas.width) {
+      carX = carX + 5;
+    }
   }
   if (isCarLeft) {
-    carX = carX - 5;
+    if (carX > 0) {
+      carX = carX - 5;
+    }
   }
   //call it over again, recursion
   //mimics animation
