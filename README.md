@@ -1,4 +1,4 @@
-# Car Game
+# Race to 1st
 
 ## Description
 
@@ -7,25 +7,41 @@ Brief description of the project
 ## MVP (DOM - CANVAS)
 
 MVP definition, deliverables.
+-> Car to move left and right with arrow keys
+-> Opposotion cars come from top to bottom
+
+-> Win the game by crossing the finish line 1st
 
 ## Backlog
+
+-> Game ends when car collides with another car
+-> Position is changed when passing a car
 
 ## Data structure
 
 Classes and methods definition.
 
+### script.js
+
+- drawCar()
+- gameAnimation()
+- startGame()
+
 ## States y States Transitions
 
 Definition of the different states and their transition (transition functions)
 
-- splashScreen
-- gameScreen
+- Landing PageScreen
+- Racing GameS creen
 - gameoverScreen
 - winScreen
 
 ## Task
 
 Task definition in order of priority
+
+1. draw canvas and draw car
+2. implement car movement with left and right arrow keys
 
 ## Links
 
