@@ -16,6 +16,9 @@ MVP definition, deliverables.
 
 -> Game ends when car collides with another car
 -> Position is changed when passing a car
+-> make sure opp car are within canvas
+->postion only changes if speed is 5 or less
+->stop cars from coming down when car postion at 1
 
 ## Data structure
 

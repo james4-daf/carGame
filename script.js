@@ -27,13 +27,7 @@ let isCarLeft = false;
 
 let carPosition = 8;
 
-function drawCar() {
-  ctx.beginPath();
-  ctx.fillStyle = "#34eb3d";
-  ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
-
-  ctx.closePath();
-
+function oppositionCarsMovement() {
   for (i = 0; i < oppCars.length; i++) {
     ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
     //oppCars[i].y = oppCars[i].y + 5;
@@ -43,7 +37,28 @@ function drawCar() {
         y: 0,
       };
     }
+    if (oppCars[i].y == canvas.height - carHeight) {
+      carPosition--;
+    }
+    if (carPosition == 1) {
+      //setTimeout(gameOver(), 5000);
+      //   oppCars[i] = {
+      //     x: Math.floor(Math.random() * canvas.width),
+      //     y: 600,
+      //   };
+      //add finish line
+      //stop cars from coming down
+    }
   }
+}
+
+function drawCar() {
+  ctx.beginPath();
+  ctx.fillStyle = "#34eb3d";
+  ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
+
+  ctx.closePath();
+  oppositionCarsMovement();
   //oppCarY = oppCarY + 5;
 }
 
@@ -78,6 +93,13 @@ function startGame() {
   canvas.style.display = "block";
   startRaceBtn.style.display = "none";
   gameAnimation();
+}
+
+function gameOver() {
+  raceIsOver = true;
+  canvas.style.display = "none";
+  startRaceBtn.style.display = "none";
+  restartRaceBtn.style.display = "inline";
 }
 
 //adding event listeners
