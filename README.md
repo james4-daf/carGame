@@ -2,23 +2,22 @@
 
 ## Description
 
-Brief description of the project
+Develop a javascript game by manipulating the DOM. Aim is to use left are right arrow keys to navigate past the other cars to avoid collision. To win, one must cross the finish line in first place.
 
 ## MVP (DOM - CANVAS)
 
 MVP definition, deliverables.
 -> Car to move left and right with arrow keys
--> Opposotion cars come from top to bottom
+-> Opposition cars come from top to bottom
 
 -> Win the game by crossing the finish line 1st
 
 ## Backlog
 
 -> Game ends when car collides with another car
--> Position is changed when passing a car
 -> make sure opp car are within canvas
-->postion only changes if speed is 5 or less
-->stop cars from coming down when car postion at 1
+
+->fix restart game logic
 
 ## Data structure
 
@@ -29,6 +28,9 @@ Classes and methods definition.
 - drawCar()
 - gameAnimation()
 - startGame()
+- oppositionCarsMovement()
+- raceWon()
+- crash()
 
 ## States y States Transitions
 
@@ -37,7 +39,7 @@ Definition of the different states and their transition (transition functions)
 - Landing PageScreen
 - Racing GameS creen
 - raceWonScreen
-- winScreen
+- CrashScreen
 
 ## Task
 
@@ -50,7 +52,7 @@ Task definition in order of priority
 
 ### Trello
 
-[Link url](https://trello.com)
+[Link url](https://trello.com/b/BoXyWiiO/race-to-1st)
 
 ### Git
 

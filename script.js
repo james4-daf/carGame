@@ -4,6 +4,7 @@ canvas.style.backgroundColor = "#c1fafb";
 
 // getting the paintbrush
 let ctx = canvas.getContext("2d");
+var t;
 
 // The DOM of the start and the restart buttons
 let startRaceBtn = document.querySelector("#startRace");
@@ -39,13 +40,15 @@ let carPosition = 8;
 // }
 
 function oppositionCarsMovement() {
-  if (carPosition != 1) {
+  if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
       ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
       oppCars[i].y = oppCars[i].y + 10;
-      if (oppCars[i].x == carX) {
-        crash();
-      }
+
+      //CRASH LOGIC
+      //   if (oppCars[i].x == carX) {
+      //     crash();
+      //   }
       //4,5,10 works cus of multiples of 620
       if (oppCars[i].y > canvas.height) {
         oppCars[i] = {
@@ -64,8 +67,7 @@ function oppositionCarsMovement() {
     //again
     finishLineY = finishLineY + 4;
     if (finishLineY == canvas.height - carHeight) {
-      setTimeout(raceWon, 500);
-      //raceWon();
+      t = setTimeout(raceWon, 500);
     }
   }
 }
@@ -103,6 +105,7 @@ function gameAnimation() {
   if (raceIsOver) {
     //when game is over, call this to cancel animation
     cancelAnimationFrame(intervalID);
+    clearTimeout(t);
   } else {
     intervalID = requestAnimationFrame(gameAnimation);
   }
