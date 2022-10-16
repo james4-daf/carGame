@@ -8,6 +8,8 @@ let ctx = canvas.getContext("2d");
 // The DOM of the start and the restart buttons
 let startRaceBtn = document.querySelector("#startRace");
 let restartRaceBtn = document.querySelector("#restartRace");
+let raceTitle = document.querySelector("#raceTitle");
+let winnerTitle = document.querySelector("#winnerTitle");
 
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
@@ -30,9 +32,9 @@ let isCarLeft = false;
 
 let carPosition = 3;
 
-function finishLine() {
-  ctx.drawImage(finishLineImg, oppCars[i].x, oppCars[i].y);
-}
+// function finishLine() {
+//   ctx.drawImage(finishLineImg, oppCars[i].x, oppCars[i].y);
+// }
 
 function oppositionCarsMovement() {
   if (carPosition != 1) {
@@ -100,7 +102,8 @@ function gameAnimation() {
 }
 
 function startGame() {
-  raceIsOver = false;
+  carPosition = 3;
+
   canvas.style.display = "block";
   startRaceBtn.style.display = "none";
 
@@ -113,24 +116,30 @@ function gameOver() {
   canvas.style.display = "none";
   startRaceBtn.style.display = "none";
   restartRaceBtn.style.display = "inline";
+  winnerTitle.style.display = "block";
 }
 
 //adding event listeners
 window.addEventListener("load", () => {
   canvas.style.display = "none";
   restartRaceBtn.style.display = "none";
+  winnerTitle.style.display = "none";
   startRaceBtn.addEventListener("click", () => {
+    raceTitle.style.display = "none";
     startGame(); //TODO:move down when finished
     // do something when the user clicks the start button
   });
 
   restartRaceBtn.addEventListener("click", () => {
+    raceIsOver = false;
+    intervalID = null;
     // do something when the user clicks the restart button
     canvas.style.display = "block";
     startRaceBtn.style.display = "none";
     // canvas.style.display = "block";
     // startRaceBtn.style.display = "none";
     restartRaceBtn.style.display = "none";
+    winnerTitle.style.display = "none";
     //raceIsOver = false;
     startGame();
   });

@@ -1,0 +1,22 @@
+#raceTitle,
+#winnerTitle {
+  position: inline;
+  width: 435px;
+  height: 171px;
+  left: 113px;
+  top: 67px;
+
+  font-family: "Italiana";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 218.3%;
+  /* or 140px */
+
+  text-align: center;
+  letter-spacing: 0.195em;
+
+  color: #f11919;
+
+  /* border: 1px solid #000000; */
+}
