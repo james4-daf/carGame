@@ -11,12 +11,15 @@ let restartRaceBtn = document.querySelector("#restartRace");
 
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
+let finishLineImg = new Image();
+finishLineImg.src = "./images/finishLine.png";
 // let oppCarX = 100;
 // let oppCarY = 5;
 let oppCars = [{ x: 100, y: 0 }];
 
 let intervalID = null;
 let raceIsOver = false;
+let finishLineY = 0;
 
 let carX = 230;
 let carHeight = 80;
@@ -25,29 +28,35 @@ let carWidth = 50;
 let isCarRight = false;
 let isCarLeft = false;
 
-let carPosition = 8;
+let carPosition = 3;
+
+function finishLine() {
+  ctx.drawImage(finishLineImg, oppCars[i].x, oppCars[i].y);
+}
 
 function oppositionCarsMovement() {
-  for (i = 0; i < oppCars.length; i++) {
-    ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
-    //oppCars[i].y = oppCars[i].y + 5;
-    if (oppCars[i].y > canvas.height) {
-      oppCars[i] = {
-        x: Math.floor(Math.random() * canvas.width),
-        y: 0,
-      };
+  if (carPosition != 1) {
+    for (i = 0; i < oppCars.length; i++) {
+      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
+      oppCars[i].y = oppCars[i].y + 10;
+      //4,5,10 works cus of multiples of 620
+      if (oppCars[i].y > canvas.height) {
+        oppCars[i] = {
+          x: Math.floor(Math.random() * canvas.width),
+          y: 0,
+        };
+      }
+      if (oppCars[i].y == canvas.height - carHeight) {
+        carPosition--;
+      }
     }
-    if (oppCars[i].y == canvas.height - carHeight) {
-      carPosition--;
-    }
-    if (carPosition == 1) {
-      //setTimeout(gameOver(), 5000);
-      //   oppCars[i] = {
-      //     x: Math.floor(Math.random() * canvas.width),
-      //     y: 600,
-      //   };
-      //add finish line
-      //stop cars from coming down
+  } else {
+    ctx.drawImage(finishLineImg, 0, finishLineY);
+    //again
+    finishLineY = finishLineY + 4;
+    if (finishLineY == canvas.height - carHeight) {
+      setTimeout(gameOver, 500);
+      //gameOver();
     }
   }
 }
@@ -82,21 +91,25 @@ function gameAnimation() {
   }
   //call it over again, recursion
   //mimics animation
-  intervalID = requestAnimationFrame(gameAnimation);
   if (raceIsOver) {
     //when game is over, call this to cancel animation
     cancelAnimationFrame(intervalID);
+  } else {
+    intervalID = requestAnimationFrame(gameAnimation);
   }
 }
 
 function startGame() {
+  raceIsOver = false;
   canvas.style.display = "block";
   startRaceBtn.style.display = "none";
+
   gameAnimation();
 }
 
 function gameOver() {
   raceIsOver = true;
+
   canvas.style.display = "none";
   startRaceBtn.style.display = "none";
   restartRaceBtn.style.display = "inline";
@@ -106,16 +119,20 @@ function gameOver() {
 window.addEventListener("load", () => {
   canvas.style.display = "none";
   restartRaceBtn.style.display = "none";
-  startGame(); //TODO:move down when finished
   startRaceBtn.addEventListener("click", () => {
+    startGame(); //TODO:move down when finished
     // do something when the user clicks the start button
   });
 
   restartRaceBtn.addEventListener("click", () => {
     // do something when the user clicks the restart button
-    // canvas.style.display = "inline";
+    canvas.style.display = "block";
+    startRaceBtn.style.display = "none";
+    // canvas.style.display = "block";
     // startRaceBtn.style.display = "none";
-    // restartRaceBtn.style.display = "inline";
+    restartRaceBtn.style.display = "none";
+    //raceIsOver = false;
+    startGame();
   });
 
   document.addEventListener("keydown", (event) => {
