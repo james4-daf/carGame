@@ -10,6 +10,8 @@ let startRaceBtn = document.querySelector("#startRace");
 let restartRaceBtn = document.querySelector("#restartRace");
 let raceTitle = document.querySelector("#raceTitle");
 let winnerTitle = document.querySelector("#winnerTitle");
+let crashTitle = document.querySelector("#crashTitle");
+let goTitle = document.querySelector("#goTitle");
 
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
@@ -30,7 +32,7 @@ let carWidth = 50;
 let isCarRight = false;
 let isCarLeft = false;
 
-let carPosition = 3;
+let carPosition = 8;
 
 // function finishLine() {
 //   ctx.drawImage(finishLineImg, oppCars[i].x, oppCars[i].y);
@@ -41,6 +43,9 @@ function oppositionCarsMovement() {
     for (i = 0; i < oppCars.length; i++) {
       ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
       oppCars[i].y = oppCars[i].y + 10;
+      if (oppCars[i].x == carX) {
+        crash();
+      }
       //4,5,10 works cus of multiples of 620
       if (oppCars[i].y > canvas.height) {
         oppCars[i] = {
@@ -52,13 +57,15 @@ function oppositionCarsMovement() {
         carPosition--;
       }
     }
-  } else {
+  }
+
+  if (carPosition == 1) {
     ctx.drawImage(finishLineImg, 0, finishLineY);
     //again
     finishLineY = finishLineY + 4;
     if (finishLineY == canvas.height - carHeight) {
-      setTimeout(gameOver, 500);
-      //gameOver();
+      setTimeout(raceWon, 500);
+      //raceWon();
     }
   }
 }
@@ -102,7 +109,7 @@ function gameAnimation() {
 }
 
 function startGame() {
-  carPosition = 3;
+  carPosition = 8;
 
   canvas.style.display = "block";
   startRaceBtn.style.display = "none";
@@ -110,13 +117,24 @@ function startGame() {
   gameAnimation();
 }
 
-function gameOver() {
+function raceWon() {
+  raceIsOver = true;
+
+  canvas.style.display = "none";
+  startRaceBtn.style.display = "none";
+  winnerTitle.style.display = "block";
+  restartRaceBtn.style.display = "inline";
+}
+
+function crash() {
   raceIsOver = true;
 
   canvas.style.display = "none";
   startRaceBtn.style.display = "none";
   restartRaceBtn.style.display = "inline";
-  winnerTitle.style.display = "block";
+
+  crashTitle.style.display = "block";
+  goTitle.style.display = "block";
 }
 
 //adding event listeners
@@ -124,6 +142,8 @@ window.addEventListener("load", () => {
   canvas.style.display = "none";
   restartRaceBtn.style.display = "none";
   winnerTitle.style.display = "none";
+  crashTitle.style.display = "none";
+  goTitle.style.display = "none";
   startRaceBtn.addEventListener("click", () => {
     raceTitle.style.display = "none";
     startGame(); //TODO:move down when finished
@@ -140,6 +160,8 @@ window.addEventListener("load", () => {
     // startRaceBtn.style.display = "none";
     restartRaceBtn.style.display = "none";
     winnerTitle.style.display = "none";
+    crashTitle.style.display = "none";
+    goTitle.style.display = "none";
     //raceIsOver = false;
     startGame();
   });

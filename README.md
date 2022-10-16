@@ -36,7 +36,7 @@ Definition of the different states and their transition (transition functions)
 
 - Landing PageScreen
 - Racing GameS creen
-- gameoverScreen
+- raceWonScreen
 - winScreen
 
 ## Task

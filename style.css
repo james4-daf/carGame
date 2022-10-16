@@ -1,5 +1,7 @@
 #raceTitle,
-#winnerTitle {
+#winnerTitle,
+#crashTitle,
+#goTitle {
   position: inline;
   width: 435px;
   height: 171px;
