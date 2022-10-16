@@ -50,6 +50,8 @@ Task definition in order of priority
 
 ## Links
 
+Game hosted on github pages [Click here to play](https://james4-daf.github.io/carGame/)
+
 ### Trello
 
 [Link url](https://trello.com/b/BoXyWiiO/race-to-1st)
