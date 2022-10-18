@@ -164,6 +164,20 @@ window.addEventListener("load", () => {
     winnerTitle.style.display = "none";
     crashTitle.style.display = "none";
     goTitle.style.display = "none";
+    oppCars = [{ x: 100, y: 0 }];
+
+    intervalID = null;
+    raceIsOver = false;
+    finishLineY = 0;
+
+    carX = 230;
+    carHeight = 80;
+    carWidth = 50;
+
+    isCarRight = false;
+    isCarLeft = false;
+
+    carPosition = 8;
     //raceIsOver = false;
     startGame();
   });
