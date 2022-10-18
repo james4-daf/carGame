@@ -13,6 +13,7 @@ let raceTitle = document.querySelector("#raceTitle");
 let winnerTitle = document.querySelector("#winnerTitle");
 let crashTitle = document.querySelector("#crashTitle");
 let goTitle = document.querySelector("#goTitle");
+let instructions = document.querySelector(".instructions");
 
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
@@ -43,9 +44,9 @@ function oppositionCarsMovement() {
   if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
       ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
-      oppCars[i].y = oppCars[i].y + 10;
+      oppCars[i].y = oppCars[i].y + 5;
 
-      //CRASH LOGIC
+      //CRASH LOGIC-TODO
       //   if (oppCars[i].x == carX) {
       //     crash();
       //   }
@@ -147,8 +148,10 @@ window.addEventListener("load", () => {
   winnerTitle.style.display = "none";
   crashTitle.style.display = "none";
   goTitle.style.display = "none";
+
   startRaceBtn.addEventListener("click", () => {
     raceTitle.style.display = "none";
+    instructions.style.display = "none";
     startGame(); //TODO:move down when finished
     // do something when the user clicks the start button
   });
