@@ -40,16 +40,23 @@ let carPosition = 8;
 function oppositionCarsMovement() {
   if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
-      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
+      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y, 40, 80);
       oppCars[i].y = oppCars[i].y + 5;
+      //console.log(oppCars[i].y + oppositionCar.height);
+      //console.log(carX);
+      //console.log(carX + carWidth);
 
       // CRASH LOGIC-TODO
       // if (oppCars[i].x < carX && oppCars[i].y == carHeight) {
       //   crash();
       // }
-      // if (oppCars[i].y + oppCars[i].height > carX + carWidth) {
-      //   crash();
-      // }
+      if (
+        oppCars[i].y + oppositionCar.height >
+        canvas.height - carHeight + carWidth
+      ) {
+        crash();
+      }
+
       // if (canvas.height - carHeight + carWidth < oppCars[i].y + oppCars[i].height) {
       //   crash();
       // }
