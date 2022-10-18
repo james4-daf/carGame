@@ -12,7 +12,7 @@ let restartRaceBtn = document.querySelector("#restartRace");
 let raceTitle = document.querySelector("#raceTitle");
 let winnerTitle = document.querySelector("#winnerTitle");
 let crashTitle = document.querySelector("#crashTitle");
-let goTitle = document.querySelector("#goTitle");
+
 let instructions = document.querySelector(".instructions");
 
 let oppositionCar = new Image();
@@ -28,6 +28,7 @@ let raceIsOver = false;
 let finishLineY = 0;
 
 let carX = 230;
+
 let carHeight = 80;
 let carWidth = 50;
 
@@ -42,14 +43,20 @@ function oppositionCarsMovement() {
       ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y);
       oppCars[i].y = oppCars[i].y + 5;
 
-      //CRASH LOGIC-TODO
-      //   if (oppCars[i].x == carX) {
-      //     crash();
-      //   }
-      //4,5,10 works cus of multiples of 620
+      // CRASH LOGIC-TODO
+      // if (oppCars[i].x < carX && oppCars[i].y == carHeight) {
+      //   crash();
+      // }
+      // if (oppCars[i].y + oppCars[i].height > carX + carWidth) {
+      //   crash();
+      // }
+      // if (canvas.height - carHeight + carWidth < oppCars[i].y + oppCars[i].height) {
+      //   crash();
+      // }
       if (oppCars[i].y > canvas.height) {
+        //4,5,10 works cus of multiples of 620
         oppCars[i] = {
-          x: Math.floor(Math.random() * canvas.width),
+          x: Math.floor(Math.random() * (canvas.width - carWidth)),
           y: 0,
         };
       }
@@ -76,7 +83,7 @@ function drawCar() {
 
   ctx.closePath();
   oppositionCarsMovement();
-  //oppCarY = oppCarY + 5;
+  //oppcanvas.height - carHeight = oppcanvas.height - carHeight + 5;
 }
 
 function gameAnimation() {
@@ -133,8 +140,7 @@ function crash() {
   startRaceBtn.style.display = "none";
   restartRaceBtn.style.display = "inline";
 
-  crashTitle.style.display = "block";
-  goTitle.style.display = "block";
+  crashTitle.style.display = "inline";
 }
 
 //adding event listeners
@@ -143,7 +149,6 @@ window.addEventListener("load", () => {
   restartRaceBtn.style.display = "none";
   winnerTitle.style.display = "none";
   crashTitle.style.display = "none";
-  goTitle.style.display = "none";
 
   startRaceBtn.addEventListener("click", () => {
     raceTitle.style.display = "none";
@@ -163,7 +168,7 @@ window.addEventListener("load", () => {
     restartRaceBtn.style.display = "none";
     winnerTitle.style.display = "none";
     crashTitle.style.display = "none";
-    goTitle.style.display = "none";
+
     oppCars = [{ x: 100, y: 0 }];
 
     intervalID = null;
