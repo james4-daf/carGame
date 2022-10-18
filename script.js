@@ -4,7 +4,7 @@ canvas.style.backgroundColor = "#c1fafb";
 
 // getting the paintbrush
 let ctx = canvas.getContext("2d");
-var t;
+var timeout;
 
 // The DOM of the start and the restart buttons
 let startRaceBtn = document.querySelector("#startRace");
@@ -36,10 +36,6 @@ let isCarLeft = false;
 
 let carPosition = 8;
 
-// function finishLine() {
-//   ctx.drawImage(finishLineImg, oppCars[i].x, oppCars[i].y);
-// }
-
 function oppositionCarsMovement() {
   if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
@@ -68,7 +64,7 @@ function oppositionCarsMovement() {
     //again
     finishLineY = finishLineY + 4;
     if (finishLineY == canvas.height - carHeight) {
-      t = setTimeout(raceWon, 500);
+      timeout = setTimeout(raceWon, 500);
     }
   }
 }
@@ -106,7 +102,7 @@ function gameAnimation() {
   if (raceIsOver) {
     //when game is over, call this to cancel animation
     cancelAnimationFrame(intervalID);
-    clearTimeout(t);
+    clearTimeout(timeout);
   } else {
     intervalID = requestAnimationFrame(gameAnimation);
   }
