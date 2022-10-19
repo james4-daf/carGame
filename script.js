@@ -15,6 +15,17 @@ let crashTitle = document.querySelector("#crashTitle");
 
 let instructions = document.querySelector(".instructions");
 
+//IMAGES
+
+let redTrafficLight = new Image();
+redTrafficLight.src = "./images/traffic-light-red.jpg";
+
+let amberTrafficLight = new Image();
+amberTrafficLight.src = "./images/traffic-light-red-amber.jpg";
+
+let greenTrafficLight = new Image();
+greenTrafficLight.src = "./images/traffic-light-green.jpg";
+
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
 let finishLineImg = new Image();
@@ -85,6 +96,26 @@ function oppositionCarsMovement() {
   }
 }
 
+function drawRedTrafficLight() {
+  ctx.drawImage(redTrafficLight, 170, 200);
+  redTrafficLight.style.display = "block";
+}
+
+function drawAmberTrafficLight() {
+  ctx.drawImage(amberTrafficLight, 170, 200);
+  amberTrafficLight.style.display = "block";
+}
+
+function drawGreenTrafficLight() {
+  ctx.drawImage(greenTrafficLight, 170, 200);
+  greenTrafficLight.style.display = "block";
+}
+
+function clearTrafficLights() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  //redTrafficLight.style.display = "none";
+}
+
 function drawCar() {
   ctx.beginPath();
   ctx.fillStyle = "#34eb3d";
@@ -127,9 +158,6 @@ function gameAnimation() {
 function startGame() {
   carPosition = 8;
 
-  canvas.style.display = "block";
-  startRaceBtn.style.display = "none";
-
   gameAnimation();
 }
 
@@ -162,7 +190,16 @@ window.addEventListener("load", () => {
   startRaceBtn.addEventListener("click", () => {
     raceTitle.style.display = "none";
     instructions.style.display = "none";
-    startGame(); //TODO:move down when finished
+    drawRedTrafficLight();
+    setTimeout(drawAmberTrafficLight, 1100);
+    setTimeout(drawGreenTrafficLight, 3100);
+    canvas.style.display = "block";
+    startRaceBtn.style.display = "none";
+    setTimeout(clearTrafficLights, 1000);
+    setTimeout(clearTrafficLights, 3000);
+    setTimeout(clearTrafficLights, 5000);
+    setTimeout(startGame, 5100);
+    // startGame(); //TODO:move down when finished
     // do something when the user clicks the start button
   });
 
@@ -170,8 +207,16 @@ window.addEventListener("load", () => {
     raceIsOver = false;
     intervalID = null;
     // do something when the user clicks the restart button
+    clearTrafficLights();
+    drawRedTrafficLight();
+    setTimeout(drawAmberTrafficLight, 1500);
+    setTimeout(drawGreenTrafficLight, 3500);
     canvas.style.display = "block";
     startRaceBtn.style.display = "none";
+    setTimeout(clearTrafficLights, 1400);
+    setTimeout(clearTrafficLights, 3400);
+    setTimeout(clearTrafficLights, 5400);
+    setTimeout(startGame, 5500);
     // canvas.style.display = "block";
     // startRaceBtn.style.display = "none";
     restartRaceBtn.style.display = "none";
@@ -193,7 +238,6 @@ window.addEventListener("load", () => {
 
     carPosition = 8;
     //raceIsOver = false;
-    startGame();
   });
 
   document.addEventListener("keydown", (event) => {
