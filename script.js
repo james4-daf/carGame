@@ -1,6 +1,7 @@
 //grabbing canvas and setting the colour
 let canvas = document.querySelector("canvas");
 canvas.style.backgroundColor = "#c1fafb";
+canvas.style.border = "2px solid black";
 
 // getting the paintbrush
 let ctx = canvas.getContext("2d");
@@ -16,7 +17,10 @@ let crashTitle = document.querySelector("#crashTitle");
 let instructions = document.querySelector(".instructions");
 
 //IMAGES
+let road = new Image();
+road.src = "./images/road2.png";
 
+//canvas.style.backgroundImage = road;
 let redTrafficLight = new Image();
 redTrafficLight.src = "./images/traffic-light-red.jpg";
 
@@ -28,6 +32,9 @@ greenTrafficLight.src = "./images/traffic-light-green.jpg";
 
 let oppositionCar = new Image();
 oppositionCar.src = "./images/car.png";
+
+let userCar = new Image();
+userCar.src = "./images/userCar.png";
 let finishLineImg = new Image();
 finishLineImg.src = "./images/finishLine.png";
 // let oppCarX = 100;
@@ -117,21 +124,17 @@ function clearTrafficLights() {
 }
 
 function drawCar() {
-  ctx.beginPath();
-  ctx.fillStyle = "#34eb3d";
-  ctx.fillRect(carX, canvas.height - carHeight, carWidth, carHeight);
-
-  ctx.closePath();
+  ctx.drawImage(road, 0, 0, 500, 700);
+  ctx.drawImage(userCar, carX, canvas.height - carHeight, carWidth, carHeight);
   oppositionCarsMovement();
-  //oppcanvas.height - carHeight = oppcanvas.height - carHeight + 5;
 }
 
 function gameAnimation() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawCar();
 
-  ctx.fillStyle = "red";
-  ctx.font = "28px Roboto";
+  ctx.fillStyle = "orange";
+  ctx.font = "bold 28px serif";
   ctx.fillText(`Position: ${carPosition}`, 360, 40);
 
   if (isCarRight) {
@@ -157,6 +160,7 @@ function gameAnimation() {
 
 function startGame() {
   carPosition = 8;
+  //road.style.display = "block";
 
   gameAnimation();
 }
@@ -182,6 +186,7 @@ function crash() {
 
 //adding event listeners
 window.addEventListener("load", () => {
+  //ctx.drawImage(road, 0, 0);
   canvas.style.display = "none";
   restartRaceBtn.style.display = "none";
   winnerTitle.style.display = "none";
