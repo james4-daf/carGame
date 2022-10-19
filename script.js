@@ -135,7 +135,7 @@ function gameAnimation() {
 
   ctx.fillStyle = "orange";
   ctx.font = "bold 28px serif";
-  ctx.fillText(`Position: ${carPosition}`, 360, 40);
+  ctx.fillText(`Position: ${carPosition}`, 300, 40);
 
   if (isCarRight) {
     if (carX + carWidth < canvas.width) {
