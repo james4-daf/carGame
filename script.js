@@ -54,7 +54,9 @@ function oppositionCarsMovement() {
         oppCars[i].y + oppositionCar.height >
         canvas.height - carHeight + carWidth
       ) {
-        crash();
+        if (oppCars[i].x > carX && oppCars[i].x < carX + carWidth) {
+          crash();
+        }
       }
 
       // if (canvas.height - carHeight + carWidth < oppCars[i].y + oppCars[i].height) {
