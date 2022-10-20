@@ -50,6 +50,10 @@ carCrashSound.volume = 0.1;
 let winnerSound = new Audio();
 winnerSound.src = "./audio/WinningSound.mp3";
 winnerSound.volume = 0.3;
+
+let coinSound = new Audio();
+coinSound.src = "./audio/coin sound effect.mp3";
+coinSound.volume = 0.2;
 // let oppCarX = 100;
 // let oppCarY = 5;
 let oppCars = [{ x: 100, y: 0 }];
@@ -108,6 +112,7 @@ function oppositionCarsMovement() {
         };
       }
       if (oppCars[i].y == canvas.height - carHeight) {
+        coinSound.play();
         carPosition--;
       }
     }
