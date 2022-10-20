@@ -58,21 +58,27 @@ let carPosition = 8;
 function oppositionCarsMovement() {
   if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
-      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y, 40, 80);
+      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y, 50, 80);
       oppCars[i].y = oppCars[i].y + 5;
       //console.log(oppCars[i].y + oppositionCar.height);
       //console.log(carX);
       //console.log(carX + carWidth);
 
-      // CRASH LOGIC-TODO
-      // if (oppCars[i].x < carX && oppCars[i].y == carHeight) {
-      //   crash();
-      // }
+      // CRASH LOGIC
+
       if (
         oppCars[i].y + oppositionCar.height >
         canvas.height - carHeight + carWidth
       ) {
-        if (oppCars[i].x > carX && oppCars[i].x < carX + carWidth) {
+        if (
+          oppCars[i].x < carX + carWidth &&
+          oppCars[i].x + carWidth > carX &&
+          oppCars[i].y < canvas.height &&
+          oppCars[i].y + carHeight > canvas.height - carHeight
+          // &&
+          // oppCars[i].y > canvas.height - carHeight &&
+          // oppCars[i].y < carX + carHeight
+        ) {
           crash();
         }
       }
@@ -117,6 +123,11 @@ function drawGreenTrafficLight() {
   ctx.drawImage(greenTrafficLight, 170, 200);
   greenTrafficLight.style.display = "block";
 }
+
+// function drawTrafficLight(trafficlight) {
+//   ctx.drawImage(trafficlight, 170, 200);
+//   trafficlight.style.display = "block";
+// }
 
 function clearTrafficLights() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
