@@ -64,8 +64,8 @@ let finishLineY = 0;
 
 let carX = 230;
 
-let carHeight = 80;
-let carWidth = 50;
+let carHeight = 100;
+let carWidth = 65;
 
 let isCarRight = false;
 let isCarLeft = false;
@@ -75,7 +75,13 @@ let carPosition = 8;
 function oppositionCarsMovement() {
   if (carPosition > 1) {
     for (i = 0; i < oppCars.length; i++) {
-      ctx.drawImage(oppositionCar, oppCars[i].x, oppCars[i].y, 50, 80);
+      ctx.drawImage(
+        oppositionCar,
+        oppCars[i].x,
+        oppCars[i].y,
+        carWidth,
+        carHeight
+      );
       oppCars[i].y = oppCars[i].y + 5;
       //console.log(oppCars[i].y + oppositionCar.height);
       //console.log(carX);
@@ -199,7 +205,6 @@ function startGame() {
 function raceWon() {
   raceIsOver = true;
 
-  canvas.style.display = "none";
   startRaceBtn.style.display = "none";
   winnerTitle.style.display = "block";
   restartRaceBtn.style.display = "inline";
