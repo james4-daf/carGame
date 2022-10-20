@@ -37,6 +37,19 @@ let userCar = new Image();
 userCar.src = "./images/userCar.png";
 let finishLineImg = new Image();
 finishLineImg.src = "./images/finishLine.png";
+
+//sounds
+let trafficlightSound = new Audio();
+trafficlightSound.src = "./audio/trafficLights.mp3";
+trafficlightSound.volume = 0.1;
+
+let carCrashSound = new Audio();
+carCrashSound.src = "./audio/Car Crash Sound Effect.mp3";
+carCrashSound.volume = 0.1;
+
+let winnerSound = new Audio();
+winnerSound.src = "./audio/WinningSound.mp3";
+winnerSound.volume = 0.3;
 // let oppCarX = 100;
 // let oppCarY = 5;
 let oppCars = [{ x: 100, y: 0 }];
@@ -79,6 +92,7 @@ function oppositionCarsMovement() {
           // oppCars[i].y > canvas.height - carHeight &&
           // oppCars[i].y < carX + carHeight
         ) {
+          carCrashSound.play();
           crash();
         }
       }
@@ -105,6 +119,7 @@ function oppositionCarsMovement() {
     finishLineY = finishLineY + 4;
     if (finishLineY == canvas.height - carHeight) {
       timeout = setTimeout(raceWon, 500);
+      winnerSound.play();
     }
   }
 }
@@ -206,6 +221,7 @@ window.addEventListener("load", () => {
   startRaceBtn.addEventListener("click", () => {
     raceTitle.style.display = "none";
     instructions.style.display = "none";
+    trafficlightSound.play();
     drawRedTrafficLight();
     setTimeout(drawAmberTrafficLight, 1100);
     setTimeout(drawGreenTrafficLight, 3100);
@@ -213,8 +229,8 @@ window.addEventListener("load", () => {
     startRaceBtn.style.display = "none";
     setTimeout(clearTrafficLights, 1000);
     setTimeout(clearTrafficLights, 3000);
-    setTimeout(clearTrafficLights, 5000);
-    setTimeout(startGame, 5100);
+    setTimeout(clearTrafficLights, 4600);
+    setTimeout(startGame, 4700);
     // startGame(); //TODO:move down when finished
     // do something when the user clicks the start button
   });
@@ -224,6 +240,7 @@ window.addEventListener("load", () => {
     intervalID = null;
     // do something when the user clicks the restart button
     clearTrafficLights();
+    trafficlightSound.play();
     drawRedTrafficLight();
     setTimeout(drawAmberTrafficLight, 1500);
     setTimeout(drawGreenTrafficLight, 3500);
@@ -231,8 +248,8 @@ window.addEventListener("load", () => {
     startRaceBtn.style.display = "none";
     setTimeout(clearTrafficLights, 1400);
     setTimeout(clearTrafficLights, 3400);
-    setTimeout(clearTrafficLights, 5400);
-    setTimeout(startGame, 5500);
+    setTimeout(clearTrafficLights, 4600);
+    setTimeout(startGame, 4700);
     // canvas.style.display = "block";
     // startRaceBtn.style.display = "none";
     restartRaceBtn.style.display = "none";
