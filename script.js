@@ -204,7 +204,7 @@ function startGame() {
 
 function raceWon() {
   raceIsOver = true;
-
+  canvas.style.display = "none";
   startRaceBtn.style.display = "none";
   winnerTitle.style.display = "block";
   restartRaceBtn.style.display = "inline";
