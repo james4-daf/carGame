@@ -7,17 +7,14 @@ Develop a javascript game by manipulating the DOM. Aim is to use left are right 
 ## MVP (DOM - CANVAS)
 
 MVP definition, deliverables.
--> Car to move left and right with arrow keys
--> Opposition cars come from top to bottom
 
--> Win the game by crossing the finish line 1st
+- Car to move left and right with arrow keys
+- Opposition cars come from top to bottom
+- Win the game by crossing the finish line 1st
 
 ## Backlog
 
--> Game ends when car collides with another car
--> make sure opp car are within canvas
-
-->fix restart game logic
+- Add different levels
 
 ## Data structure
 
@@ -65,4 +62,4 @@ URls for the project repo and deploy
 ### Slides
 
 URls for the project presentation (slides)
-[Slides](https://docs.google.com/presentation/d/1vf8zApHikXjzpNxMybDhUfnNwumqBeZMUI82ZIKPr4Q/edit?usp=sharing)
+[Slides](https://docs.google.com/presentation/d/1pxl4pCmzBq02mD6_VzMyUoom3Sm8MVfcD1YnsgMgzHA/edit?usp=sharing)
